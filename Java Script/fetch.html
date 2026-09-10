@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY SHOP</title>
+    <style>
+        img {
+            height: 100px;
+            width: 100px;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            padding: 20 px;
+            color: red;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Price</th>
+                
+            </tr>
+        </thead>
+        <tbody id="data">
+
+        </tbody>
+    </table>
+     <script>
+       const ele=document.getElementById("data");
+       const url="https://dummyjson.com/products";
+       async function loadData(){
+        try{
+            const res=await  fetch(url);  //data converted into string 
+            const data=await res.json(); //converter
+            console.log("DATA",data.products);  //picks data from the api
+            let row="";
+            data.products.map((i , index)=>{  //to put map function  , i indicate array element , index indicates the S.No 
+                row+=`
+                <tr> 
+                    <td>${index+1}</td>
+                    <td>${i.title}</td>
+                    <td><img src="${i.images[0]}"/></td>
+                    <td>${i.category}</td>
+                    <td>$${i.price}</td>
+                </tr>
+                ` ; // symbol TIL ( `` ) is used to write literals in js 
+                ele.innerHTML=row;  //to put the data in the table
+            })
+        }
+        catch(err){
+            console.log("ERROR",err);
+
+        }
+       }
+       loadData();
+     </script>
+</body>
+</html>
