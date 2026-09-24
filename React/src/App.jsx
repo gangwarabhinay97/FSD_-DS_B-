@@ -1,14 +1,15 @@
 import React from 'react'
-import Book from './Component/Book'
-import Physics from './Component/Physics'
-import Chemistry from './Component/Chemistry'
+import Id from './Component/Id'
 
 const App = () => {
   return (
-    <div style={{display:'flex',justifyContent:'space-around'}}>
-     <Book/>
-     <Physics/>
-     <Chemistry/>
+    <div style={{ display:'flex' , gap:'10px'}}>
+      <Id/>
+      <br />
+       <Id/>
+      <br />
+       <Id/>
+      <br />
     </div>
   )
 }
